@@ -10,10 +10,10 @@
 namespace corgi
 {
 Entity::Entity(EntityId id, Scene& scene, const char* name)
-    : 
-	    scene_(&scene),
+    : scene_(&scene)
+    ,
 
-	    _id(id)
+    _id(id)
     , name_(name)
 {
     _depth = 0;
@@ -80,7 +80,7 @@ void Entity::Iterator::increment_depth_first()
     current_node_ = queue_.front();
     queue_.pop_front();
 
-    for(size_t i = current_node_->children().size() - 1; i >= 0; i--)
+    for(int i = (int)current_node_->children().size() - 1; i >= 0; i--)
     {
         queue_.push_front(current_node_->children()[i]);
     }
@@ -202,11 +202,10 @@ void Entity::remove_child(RefEntity e)
 }
 
 Entity::Entity(EntityId id, RefEntity parent, const char* name)
-    :
-	   _parent(parent), 
-	    _id(id)
+    : _parent(parent)
+    , _id(id)
     , name_(name)
-    
+
 {
     if(!parent)
         throw std::invalid_argument("Parent argument is null");
