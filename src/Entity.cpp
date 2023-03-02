@@ -10,8 +10,10 @@
 namespace corgi
 {
 Entity::Entity(EntityId id, Scene& scene, const char* name)
-    : _id(id)
-    , scene_(&scene)
+    : 
+	    scene_(&scene),
+
+	    _id(id)
     , name_(name)
 {
     _depth = 0;
@@ -37,7 +39,7 @@ void Entity::Iterator::increment_breadth_first()
     // TODO : Maybe check if this can be done with simply a
     // insert or something
 
-    for(int i = 0; i < current_node_->children().size(); i++)
+    for(size_t i = 0; i < current_node_->children().size(); i++)
     {
         queue_.push_back(current_node_->children()[i]);
     }
@@ -176,7 +178,7 @@ RefEntity Entity::find(const char* name) noexcept
 
 void Entity::remove_child(RefEntity e)
 {
-    for(int i = 0; i < children_.size(); i++)
+    for(size_t i = 0; i < children_.size(); i++)
     {
         if(children_[i] == e)
         {
@@ -200,9 +202,11 @@ void Entity::remove_child(RefEntity e)
 }
 
 Entity::Entity(EntityId id, RefEntity parent, const char* name)
-    : _parent(parent)
+    :
+	   _parent(parent), 
+	    _id(id)
     , name_(name)
-    , _id(id)
+    
 {
     if(!parent)
         throw std::invalid_argument("Parent argument is null");

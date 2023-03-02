@@ -14,3 +14,5 @@ target_link_libraries(${PROJECT_NAME}
     corgi-test)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
+
+add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
