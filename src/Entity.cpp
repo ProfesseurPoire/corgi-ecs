@@ -90,8 +90,10 @@ void Entity::Iterator::increment_depth_first()
 Entity::Iterator::Iterator(Entity& node, IteratorMode mode)
     : mode_(mode)
 {
-    std::ranges::transform(node.children_, std::back_inserter(queue_),
+    std::transform(node.children_.begin(), node.children_.end(), std::back_inserter(queue_),
                            [](RefEntity n) -> RefEntity { return n; });
+	    
+
     operator++();
 }
 
