@@ -6,6 +6,7 @@
 #include <cstring>
 #include <iterator>
 #include <stdexcept>
+#include <ranges>
 
 namespace corgi
 {
